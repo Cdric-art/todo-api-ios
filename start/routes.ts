@@ -22,9 +22,12 @@ import Route from '@ioc:Adonis/Core/Route'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 
 Route.get('/db', async ({ response }) => {
-  const report = await HealthCheck.getReport()
+	const report = await HealthCheck.getReport()
 
-  return report.healthy
-    ? response.ok(report)
-    : response.badRequest(report)
+	return report.healthy ? response.ok(report) : response.badRequest(report)
 })
+
+// Users
+Route.post('/register', 'UsersController.register')
+Route.post('/login', 'UsersController.login')
+Route.get('/logout', 'UsersController.logout')
