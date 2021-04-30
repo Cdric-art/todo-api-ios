@@ -14,8 +14,8 @@ export default class UsersController {
 		const { pseudo, password } = request.only(['pseudo', 'password'])
 
 		await auth.attempt(pseudo, password)
-
-		return auth.user
+    console.log(auth.user?.toJSON())
+		return auth.user?.toJSON()
 	}
 
 	public async logout({ auth, response }: HttpContextContract) {
