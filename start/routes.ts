@@ -31,3 +31,13 @@ Route.get('/db', async ({ response }) => {
 Route.post('/register', 'UsersController.register')
 Route.post('/login', 'UsersController.login')
 Route.get('/logout', 'UsersController.logout')
+
+// Todos
+Route.group(() => {
+  Route.get('/todo', 'TodosController.show')
+  Route.get('/todo/:id', 'TodosController.index')
+  Route.post('/todo', 'TodosController.create')
+  Route.patch('/todo/:id', 'TodosController.updateStatus')
+  Route.put('/todo/:id', 'TodosController.update')
+  Route.delete('/todo/:id', 'TodosController.delete')
+}).middleware(['auth'])
