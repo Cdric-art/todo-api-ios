@@ -13,13 +13,13 @@ export default class UsersController {
 	public async login({ auth, request }: HttpContextContract) {
 		const { pseudo, password } = request.only(['pseudo', 'password'])
 
-		await auth.attempt(pseudo, password)
-    console.log(auth.user?.toJSON())
-		return auth.user?.toJSON()
+		const token = await auth.use('api').attempt(pseudo, password)
+
+    return token.toJSON()
 	}
 
 	public async logout({ auth, response }: HttpContextContract) {
-		await auth.logout()
+		await auth.use('api').logout()
 		return response.noContent()
 	}
 }

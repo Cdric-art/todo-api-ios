@@ -5,8 +5,9 @@ import TodoValidator from 'App/Validators/TodoValidator'
 export default class TodosController {
 
   public async show({ auth, response }: HttpContextContract) {
-    const userId = await auth.user?.id
-    const todos = await Todo.query().where('userId', userId!)
+    const user = await auth.authenticate()
+
+    const todos = await Todo.query().where('userId', user.id!)
 
     return response.ok(todos)
   }

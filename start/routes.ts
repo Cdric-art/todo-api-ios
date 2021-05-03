@@ -40,4 +40,4 @@ Route.group(() => {
   Route.patch('/todo/:id', 'TodosController.updateStatus')
   Route.put('/todo/:id', 'TodosController.update')
   Route.delete('/todo/:id', 'TodosController.delete')
-}).middleware(['auth'])
+})
